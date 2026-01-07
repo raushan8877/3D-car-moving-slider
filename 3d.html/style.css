@@ -1,0 +1,108 @@
+@import url('https://fonts.cdnfonts.com/css/ica-rubrik-black');
+@import url('https://fonts.cdnfonts.com/css/poppins');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    overflow-x: hidden;
+    font-family: Poppins, sans-serif;
+}
+
+.banner{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.banner::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url(bg.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+.banner .slider{
+    position: absolute;
+    width: 140px;          
+    height: 180px;         
+    top: 50%;
+    left: 50%;
+    transform-style: preserve-3d;
+    transform: translate(-50%, -50%) perspective(1000px);
+    animation: autorun 20s linear infinite;
+    z-index: 2;
+}
+@keyframes autorun{
+    from{
+        transform: translate(-50%, -50%) perspective(1000px)
+                   rotateX(-16deg) rotateY(0deg);
+    }
+    to{
+        transform: translate(-50%, -50%) perspective(1000px)
+                   rotateX(-16deg) rotateY(360deg);
+    }
+}
+
+.banner .slider .item{
+    position: absolute;
+    inset: 0;
+    transform:
+        rotateY(calc((var(--position) - 1) * (360deg / var(--quantity))))
+        translateZ(380px);  
+}
+.banner .slider .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.35);
+}
+
+.banner .content{
+    position: relative;
+    z-index: 3;
+    width: min(1400px, 100vw);
+    margin: auto;
+    padding-bottom: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.banner .content h1{
+    font-family: 'ICA Rubrik Black';
+    font-size: 16em;
+    line-height: 1em;
+    color: #91be13;
+    position: relative;
+}
+
+.banner .content h1::after{
+    content: attr(data-content);
+    position: absolute;
+    inset: 0;
+    -webkit-text-stroke: 2px #d2d2d2;
+    color: transparent;
+}
+.banner .content .author{
+    max-width: 220px;
+    text-align: right;
+}
+.banner .content h2{
+    font-size: 2.5em;
+}
+.banner::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(53, 54, 53, 0.3);
+    z-index: 1;
+}
